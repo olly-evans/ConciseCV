@@ -1,19 +1,10 @@
 import cv2
+import matplotlib.pyplot as plt
 
 # Read the image
 image = cv2.imread("C:\\Users\\evans\\OneDrive\\Desktop\\Python\\RGB Channels\\sistinechapel.jpg")
+assert image is not None, "file could not be read, check with os.path.exists()"
 
-# Display the image in a window, iamge is 800x348
-#cv2.imshow("Image", image)
-
-# Wait until a key is pressed, then close the window
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-blue, red, green = cv2.split(image)
-
-# One list in the list is 800 elements, there are 348 lists.
-rows = len(blue)
-print(rows)
-col = len(blue[0])
-print(col)
+# Stupid method just finds the frequency values :(
+hist = cv2.calcHist([image], [2], None, [256], [0, 256])
+print(hist)
